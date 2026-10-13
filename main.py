@@ -40,6 +40,7 @@ class DataLoaderThread(QThread):
 
 
             with baglanti as conn:
+                # Rebuild the table from the initial dataset on application startup.
                 conn.execute("DELETE FROM Cars;")
             baglanti.commit()
 
@@ -286,9 +287,10 @@ def show_results():
     save_filters() 
     try:
        
-        
+
         
         query = "SELECT DISTINCT * FROM cars WHERE 1=1"
+        # Keep filter values separate from SQL so they can be safely bound.
         filters = []
 
         

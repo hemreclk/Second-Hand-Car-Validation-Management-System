@@ -42,7 +42,7 @@ def veri_cek(page_from,page_to):
           driver.get(f"https://dod.com.tr/arac-arama?sayfa={page_number}")
           print(f"{page_number}. sayfa verisi çekiliyor.")  
           try:
-              
+              # Wait for dynamically loaded listing cards before reading the page.
               WebDriverWait(driver, 20).until(
                   EC.presence_of_all_elements_located((By.CLASS_NAME, "do-vehicle-card__container"))
               )
